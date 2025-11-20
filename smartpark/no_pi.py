@@ -9,8 +9,8 @@ import threading
 import time
 import tkinter as tk
 from typing import Iterable
-#TODO: replace this module with yours
-import mocks
+#TODO:replace this module with yours
+from smartpark import CarparkManager
 
 # ------------------------------------------------------------------------------------#
 # You don't need to understand how to implement this class.                           #
@@ -174,14 +174,13 @@ if __name__ == '__main__':
     root = tk.Tk()
 
     #TODO: This is my dodgy mockup. Replace it with a good one!
-    mock=mocks.MockCarparkManager()
+    # Initialize carpark manager
+    manager = CarparkManager()
 
-    display=CarParkDisplay(root)
-    #TODO: Set the display to use your data source
-    display.data_provider=mock
+    display = CarParkDisplay(root)
+    display.data_provider = manager
 
-    detector=CarDetectorWindow(root)
-    #TODO: Attach your event listener
-    detector.add_listener(mock)
+    detector = CarDetectorWindow(root)
+    detector.add_listener(manager)
 
     root.mainloop()
