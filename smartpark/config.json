@@ -1,25 +1,26 @@
 {
     "CarParks": [
         {
-            "name": "raf-park-international",
-            "total-spaces": 130,
+            "name": "moondalup-central",
+            "total-spaces": 100,
             "total-cars": 0,
-            "location": "moondalup",
+            "location": "Moondalup City Square",
+            "log_file" : "carpark.log",
             "broker": "localhost",
             "port": 1883,
             "Sensors": [
                 {
-                    "name": "sensor1",
+                    "name": "entry-sensor-1",
                     "type": "entry"
                 },
                 {
-                    "name": "sensor2",
+                    "name": "exit-sensor-1",
                     "type": "exit"
                 }
             ],
             "Displays": [
                 {
-                    "name": "display1"
+                    "name": "main-display"
                 }
             ]
         }

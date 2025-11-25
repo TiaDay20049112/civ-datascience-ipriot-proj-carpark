@@ -10,7 +10,7 @@ import time
 import tkinter as tk
 from typing import Iterable
 #TODO: replace this module with yours
-import mocks
+import carpark_manager
 
 # ------------------------------------------------------------------------------------#
 # You don't need to understand how to implement this class.                           #
@@ -173,15 +173,15 @@ class CarDetectorWindow:
 if __name__ == '__main__':
     root = tk.Tk()
 
-    #TODO: This is my dodgy mockup. Replace it with a good one!
-    mock=mocks.MockCarparkManager()
-
-    display=CarParkDisplay(root)
-    #TODO: Set the display to use your data source
-    display.data_provider=mock
-
-    detector=CarDetectorWindow(root)
-    #TODO: Attach your event listener
-    detector.add_listener(mock)
-
+    # Create the CarparkManager with config file
+    manager = carpark_manager.CarparkManager("smartpark/config.json")
+    
+    # Create display and set data provider
+    display = CarParkDisplay(root)
+    display.data_provider = manager
+    
+    # Create detector window and attach listener
+    detector = CarDetectorWindow(root)
+    detector.add_listener(manager)
+   
     root.mainloop()
