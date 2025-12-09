@@ -179,6 +179,7 @@ if __name__ == '__main__':
     # Create display and set data provider
     display = CarParkDisplay(root)
     display.data_provider = manager
+    manager.display = display
     
     # Create detector window and attach listener
     detector = CarDetectorWindow(root)

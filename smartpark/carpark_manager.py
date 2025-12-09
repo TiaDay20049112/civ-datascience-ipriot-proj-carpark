@@ -45,7 +45,8 @@ class CarparkManager(CarparkSensorListener, CarparkDataProvider):
         self._temperature = 0
         self.cars = {}
         self.log_file = config.get("log_file", "carpark.log")
-        
+        self.display = None  # Placeholder for display interface
+
         self._log_event("INIT", f"Carpark initialized: {self.location}")
     
     #CarparkDataProvider Properties 
@@ -74,6 +75,8 @@ class CarparkManager(CarparkSensorListener, CarparkDataProvider):
             car = Car(license_plate)
             self.cars[license_plate] = car
             self._log_event("ENTRY", f"{license_plate} entered")
+        if self.display:
+            self.display.update_display() 
     
     def outgoing_car(self, license_plate):
         """Handle a car exiting the carpark."""
@@ -82,6 +85,8 @@ class CarparkManager(CarparkSensorListener, CarparkDataProvider):
             car.exit_time = datetime.now()
             self._available_spaces = min(self._available_spaces + 1, self.total_spaces)
             self._log_event("EXIT", f"{license_plate} exited")
+        if self.display:
+            self.display.update_display()    
     
     def temperature_reading(self, reading):
         """Update temperature from sensor reading."""
